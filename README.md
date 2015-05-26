@@ -1,7 +1,9 @@
 # yii2-smser
 [![Latest Stable Version](https://poser.pugx.org/daixianceng/yii2-smser/v/stable)](https://packagist.org/packages/daixianceng/yii2-smser) [![Total Downloads](https://poser.pugx.org/daixianceng/yii2-smser/downloads)](https://packagist.org/packages/daixianceng/yii2-smser) [![Latest Unstable Version](https://poser.pugx.org/daixianceng/yii2-smser/v/unstable)](https://packagist.org/packages/daixianceng/yii2-smser) [![License](https://poser.pugx.org/daixianceng/yii2-smser/license)](https://packagist.org/packages/daixianceng/yii2-smser)
 
-Yii2 SMS extension
+Yii2 SMS extension （短信扩展）
+
+包含[中国云信](http://www.sms.cn/)与[中国网建](http://www.smschinese.cn/)接口
 
 ## Installation
 
@@ -37,9 +39,9 @@ return [
 ```
 
 ```php
-Yii::$app->smser->send('手机', '短信内容');
+Yii::$app->smser->send('15000000000', '短信内容');
 ```
 
 ## License
 
-**yii2-smser** is released under the BSD 3-Clause License. See the bundled `LICENSE.md` for details.
+**yii2-smser** is released under the BSD 3-Clause License. See the bundled `LICENSE` for details.
