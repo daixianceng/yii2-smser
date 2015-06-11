@@ -24,6 +24,10 @@ class CloudSmser extends Smser
      */
     public function send($mobile, $content)
     {
+        if (parent::send($mobile, $content)) {
+            return true;
+        }
+        
         $data = [
             'uid' => $this->username,
             'pwd' => $this->password,
