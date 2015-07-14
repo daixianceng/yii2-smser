@@ -3,7 +3,7 @@
 
 Yii2 SMS extension （短信扩展）
 
-包含[中国云信](http://www.sms.cn/)与[中国网建](http://www.smschinese.cn/)接口
+包含[中国云信](http://www.sms.cn/)、[中国网建](http://www.smschinese.cn/)与[商信通](http://www.sxtsms.com/)接口
 
 ## Installation
 
