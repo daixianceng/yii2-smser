@@ -3,7 +3,7 @@
 
 Yii2 SMS extension （短信扩展）
 
-包含[中国云信](http://www.sms.cn/)、[中国网建](http://www.smschinese.cn/)与[商信通](http://www.sxtsms.com/)接口
+包含[中国云信](http://www.sms.cn/)、[中国网建](http://www.smschinese.cn/)、[商信通](http://www.sxtsms.com/)与[云片网络](http://www.yunpian.com/)接口
 
 ## Installation
 
@@ -33,6 +33,19 @@ return [
             'class' => 'daixianceng\smser\CloudSmser',
             'username' => 'username',
             'password' => 'password',
+            'useFileTransport' => false
+        ]
+    ],
+];
+```
+OR
+```php
+return [
+    'components' => [
+        'smser' => [
+            // 云片网
+            'class' => 'daixianceng\smser\YunpianSmser',
+            'apikey' => '9b11127a9701975c734b8aee81ee3526', // 请替换成您的apikey
             'useFileTransport' => false
         ]
     ],
