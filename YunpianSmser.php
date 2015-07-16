@@ -48,9 +48,6 @@ class YunpianSmser extends Smser
         if ($json && is_object($json)) {
             $this->state = isset($json->code) ? (string) $json->code : null;
             $this->message = isset($json->msg) ? (string) $json->msg : null;
-        } else {
-            $this->state = null;
-            $this->message = null;
         }
         
         return $this->state === '0';
