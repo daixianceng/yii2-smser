@@ -3,7 +3,13 @@
 
 Yii2 SMS extension （短信扩展）
 
-包含[中国云信](http://www.sms.cn/)、[中国网建](http://www.smschinese.cn/)、[商信通](http://www.sxtsms.com/)与[云片网络](http://www.yunpian.com/)接口
+包含接口：
+
+* [中国云信](http://www.sms.cn/)
+* [中国网建](http://www.smschinese.cn/)
+* [商信通](http://www.sxtsms.com/)
+* [云片网络](http://www.yunpian.com/)
+* [云通讯](http://www.yuntongxun.com/)
 
 ## Installation
 
@@ -38,7 +44,9 @@ return [
     ],
 ];
 ```
+
 OR
+
 ```php
 return [
     'components' => [
@@ -54,6 +62,11 @@ return [
 
 ```php
 Yii::$app->smser->send('15000000000', '短信内容');
+```
+
+```php
+// 发送模板短信
+Yii::$app->smser->sendByTemplate('15000000000', ['123456'], 1);
 ```
 
 ## License
