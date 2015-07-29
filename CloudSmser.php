@@ -3,6 +3,7 @@
 namespace daixianceng\smser;
 
 use yii\base\InvalidConfigException;
+use yii\base\NotSupportedException;
 
 /**
  * 中国云信
@@ -66,5 +67,13 @@ class CloudSmser extends Smser
         }
         
         $this->password = md5($password . $this->username);
+    }
+    
+    /**
+     * @inheritdoc
+     */
+    public function sendByTemplate($mobile, $data, $id)
+    {
+        throw new NotSupportedException('中国云信不支持发送模板短信！');
     }
 }

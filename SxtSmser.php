@@ -2,7 +2,7 @@
 
 namespace daixianceng\smser;
 
-use yii\base\InvalidConfigException;
+use yii\base\NotSupportedException;
 
 /**
  * 商信通
@@ -90,5 +90,13 @@ class SxtSmser extends Smser
         }
         
         return $success;
+    }
+    
+    /**
+     * @inheritdoc
+     */
+    public function sendByTemplate($mobile, $data, $id)
+    {
+        throw new NotSupportedException('商信通不支持发送模板短信！');
     }
 }

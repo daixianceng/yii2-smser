@@ -2,7 +2,7 @@
 
 namespace daixianceng\smser;
 
-use yii\base\InvalidConfigException;
+use yii\base\NotSupportedException;
 
 /**
  * 云片网
@@ -13,6 +13,9 @@ use yii\base\InvalidConfigException;
  */
 class YunpianSmser extends Smser
 {
+    /**
+     * @var string
+     */
     public $apikey;
     
     /**
@@ -51,5 +54,13 @@ class YunpianSmser extends Smser
         }
         
         return $this->state === '0';
+    }
+    
+    /**
+     * @inheritdoc
+     */
+    public function sendByTemplate($mobile, $data, $id)
+    {
+        throw new NotSupportedException('云片网不支持发送模板短信！');
     }
 }
