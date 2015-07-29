@@ -4,7 +4,6 @@ namespace daixianceng\smser;
 
 use yii\base\InvalidConfigException;
 use yii\base\NotSupportedException;
-use yii\base\yii\base;
 
 /**
  * 云通讯
