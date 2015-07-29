@@ -59,34 +59,68 @@ abstract class Smser extends \yii\base\Component
      *
      * @param string $mobile  对方手机号码
      * @param string $content 短信内容
-     * @return boolean 短信是否发送成功
+     * @return boolean        短信是否发送成功
      */
     public function send($mobile, $content)
     {
-        if ($this->useFileTransport) {
-            $dir = Yii::getAlias('@app/runtime/smser');
-            
-            try {
-                if (!FileHelper::createDirectory($dir)) {
-                    throw new \Exception('无法创建目录：' . $dir);
-                }
-                
-                $filename = $dir . DIRECTORY_SEPARATOR . time() . mt_rand(1000, 9999) . '.msg';
-                if (!touch($filename)) {
-                    throw new \Exception('无法创建文件：' . $filename);
-                }
-                
-                if (!file_put_contents($filename, "TO - $mobile" . PHP_EOL . "CONTENT - $content")) {
-                    throw new \Exception('短信发送失败！');
-                }
-            } catch (\Exception $e) {
-                $this->message = $e->getMessage();
-                return false;
-            }
-            
+        if ($this->useFileTransport && $this->_fileTransport($mobile, $content)) {
             $this->message = '短信发送成功！';
             return true;
-        } else {
+        }
+        
+        return false;
+    }
+    
+    /**
+     * 发送模板短信
+     * 
+     * @param string $mobile  对方手机号码
+     * @param mixed $data     键值对
+     * @param number $id      模板id
+     * @return boolean        短信是否发送成功
+     */
+    public function sendByTemplate($mobile, $data, $id)
+    {
+        if ($this->useFileTransport) {
+            $content = print_r($data, true);
+            if ($this->_fileTransport($mobile, $content)) {
+                $this->message = '短信发送成功！';
+                return true;
+            }
+        }
+        
+        return false;
+    }
+    
+    /**
+     * 用于存储短信内容
+     * 
+     * @param string $mobile
+     * @param string $content
+     * @throws \Exception
+     * @return boolean
+     */
+    private function _fileTransport($mobile, $content)
+    {
+        $dir = Yii::getAlias('@app/runtime/smser');
+        
+        try {
+            if (!FileHelper::createDirectory($dir)) {
+                throw new \Exception('无法创建目录：' . $dir);
+            }
+        
+            $filename = $dir . DIRECTORY_SEPARATOR . time() . mt_rand(1000, 9999) . '.msg';
+            if (!touch($filename)) {
+                throw new \Exception('无法创建文件：' . $filename);
+            }
+        
+            if (!file_put_contents($filename, "TO - $mobile" . PHP_EOL . "CONTENT - $content")) {
+                throw new \Exception('短信发送失败！');
+            }
+            
+            return true;
+        } catch (\Exception $e) {
+            $this->message = $e->getMessage();
             return false;
         }
     }
