@@ -1,6 +1,6 @@
 <?php
 
-namespace daixianceng\smser;
+namespace xfstudio\smser;
 
 use yii\base\InvalidConfigException;
 use yii\base\NotSupportedException;
@@ -8,7 +8,7 @@ use yii\base\NotSupportedException;
 /**
  * 中国云信
  * 
- * @author Cosmo <daixianceng@gmail.com>
+ * @author Cosmo <xfstudio@gmail.com>
  * @property string $password write-only password
  * @property string $state read-only state
  * @property string $message read-only message

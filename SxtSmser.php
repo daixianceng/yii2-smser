@@ -1,13 +1,13 @@
 <?php
 
-namespace daixianceng\smser;
+namespace xfstudio\smser;
 
 use yii\base\NotSupportedException;
 
 /**
  * 商信通
  * 
- * @author Cosmo <daixianceng@gmail.com>
+ * @author Cosmo <xfstudio@gmail.com>
  * @property string $password write-only password
  * @property string $state read-only state
  * @property string $message read-only message
