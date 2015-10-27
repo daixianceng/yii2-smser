@@ -6,7 +6,7 @@ use yii\base\NotSupportedException;
 
 /**
  * 中国网建
- * 
+ *
  * @author Cosmo <xfstudio@gmail.com>
  * @property string $password write-only password
  * @property string $state read-only state
@@ -18,7 +18,7 @@ class WebchineseSmser extends Smser
      * @inheritdoc
      */
     public $url = 'http://utf8.sms.webchinese.cn/';
-    
+
     /**
      * @inheritdoc
      */
@@ -27,22 +27,22 @@ class WebchineseSmser extends Smser
         if (parent::send($mobile, $content)) {
             return true;
         }
-        
+
         $data = [
             'uid' => $this->username,
             'key' => $this->password,
             'smsMob' => $mobile,
             'smsText' => $content
         ];
-        
+
         $ch = curl_init();
         curl_setopt($ch, CURLOPT_URL, $this->url);
         curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
         curl_setopt($ch, CURLOPT_POSTFIELDS, http_build_query($data));
-        
+
         $this->state = (string) curl_exec($ch);
         curl_close($ch);
-        
+
         $success = false;
         switch ($this->state) {
             case '' :
@@ -84,10 +84,10 @@ class WebchineseSmser extends Smser
                 $success = true;
                 break;
         }
-        
+
         return $success;
     }
-    
+
     /**
      * @inheritdoc
      */

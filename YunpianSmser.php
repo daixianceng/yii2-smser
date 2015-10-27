@@ -7,7 +7,7 @@ use yii\base\NotSupportedException;
 /**
  * 云片网
  * 
- * @author Cosmo <xfstudio@gmail.com>
+ * @author Cosmo <xfolstudio@gmail.com>
  * @property string $state read-only state
  * @property string $message read-only message
  * Yii::$app->smser->send('15000000000', '短信内容');
@@ -119,12 +119,7 @@ class YunpianSmser extends Smser
         $url="http://yunpian.com/v1/sms/pull_reply.json";
         $data['apikey'] = $this->apikey;
         $data['page_size'] = urlencode("$page_size");
-        // $data['mobile'] = urlencode("$mobile");
-        // if ($extend) $data['extend'] = $extend;
-        // if ($uid) $data['uid'] = $uid;
-        // if ($callback_url) $data['callback_url'] = $callback_url;
         $post_string = http_build_query($data);
-        // $post_string="apikey=$apikey&tpl_id=$tpl_id&tpl_value=$encoded_tpl_value&mobile=$mobile";
         return $this->sock_post($url, $post_string);
     }
 
