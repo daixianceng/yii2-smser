@@ -8,9 +8,9 @@
     "authors": [
         {
             "name": "Cosmo(Windy)",
-            "email": "daixianceng@gmail.com(xfolstudio@gmail.com)",
-            "homepage": "http://www.microwall.cn/(http://xf.sc.cn/)",
-            "role": "Developer(Updater)"
+            "email": "xfolstudio@gmail.com",
+            "homepage": "http://xf.sc.cn/",
+            "role": "Updater"
         }
     ],
     "require": {
