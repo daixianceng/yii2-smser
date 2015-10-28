@@ -1,13 +1,13 @@
 <?php
 
-namespace daixianceng\smser;
+namespace xfstudio\smser;
 
 use yii\base\NotSupportedException;
 
 /**
  * 商信通
- * 
- * @author Cosmo <daixianceng@gmail.com>
+ *
+ * @author Cosmo <xfstudio@gmail.com>
  * @property string $password write-only password
  * @property string $state read-only state
  * @property string $message read-only message
@@ -18,7 +18,7 @@ class SxtSmser extends Smser
      * @inheritdoc
      */
     public $url = 'http://sxtjk.3a3g.cn:5000/sms/http/Sms3.aspx';
-    
+
     /**
      * @inheritdoc
      */
@@ -27,7 +27,7 @@ class SxtSmser extends Smser
         if (parent::send($mobile, $content)) {
             return true;
         }
-        
+
         $data = [
             'action' => 'sendsms',
             'username' => $this->username,
@@ -35,15 +35,15 @@ class SxtSmser extends Smser
             'mobiles' => $mobile,
             'content' => $content
         ];
-        
+
         $ch = curl_init();
         curl_setopt($ch, CURLOPT_URL, $this->url);
         curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
         curl_setopt($ch, CURLOPT_POSTFIELDS, http_build_query($data));
-        
+
         $this->state = (string) curl_exec($ch);
         curl_close($ch);
-        
+
         $success = false;
         switch ($this->state) {
             case '' :
@@ -88,10 +88,10 @@ class SxtSmser extends Smser
                 $success = true;
                 break;
         }
-        
+
         return $success;
     }
-    
+
     /**
      * @inheritdoc
      */
