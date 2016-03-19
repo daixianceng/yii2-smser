@@ -48,11 +48,11 @@ abstract class Smser extends \yii\base\Component
     protected $message;
     
     /**
-     * 是否使用文件形式保存发送内容
+     * 是否启用文件模式
      * 
      * @var boolean
      */
-    public $useFileTransport = true;
+    public $fileMode = true;
     
     /**
      * 发送短信
@@ -63,7 +63,7 @@ abstract class Smser extends \yii\base\Component
      */
     public function send($mobile, $content)
     {
-        if ($this->useFileTransport && $this->_fileTransport($mobile, $content)) {
+        if ($this->fileMode && $this->_sendAsFile($mobile, $content)) {
             $this->message = '短信发送成功！';
             return true;
         }
@@ -81,9 +81,9 @@ abstract class Smser extends \yii\base\Component
      */
     public function sendByTemplate($mobile, $data, $id)
     {
-        if ($this->useFileTransport) {
+        if ($this->fileMode) {
             $content = print_r($data, true);
-            if ($this->_fileTransport($mobile, $content)) {
+            if ($this->_sendAsFile($mobile, $content)) {
                 $this->message = '短信发送成功！';
                 return true;
             }
@@ -100,7 +100,7 @@ abstract class Smser extends \yii\base\Component
      * @throws \Exception
      * @return boolean
      */
-    private function _fileTransport($mobile, $content)
+    private function _sendAsFile($mobile, $content)
     {
         $dir = Yii::getAlias('@app/runtime/smser');
         
@@ -123,6 +123,17 @@ abstract class Smser extends \yii\base\Component
             $this->message = $e->getMessage();
             return false;
         }
+    }
+    
+    /**
+     * Whether to use file mode.
+     * 
+     * @param boolean $value
+     */
+    public function setUseFileTransport($value)
+    {
+        Yii::warning('请使用"fileMode"替代"useFileTransport"，"useFileTransport"在未来将不会得到支持！');
+        $this->fileMode = (bool) $value;
     }
     
     /**
