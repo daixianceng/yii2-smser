@@ -17,7 +17,7 @@
     },
     "autoload": {
         "psr-4": {
-            "daixianceng\\smser\\": ""
+            "daixianceng\\smser\\": "src/"
         }
     }
 }
