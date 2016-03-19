@@ -40,7 +40,7 @@ return [
             'class' => 'daixianceng\smser\CloudSmser',
             'username' => 'username',
             'password' => 'password',
-            'useFileTransport' => false
+            'fileMode' => false
         ]
     ],
 ];
@@ -55,7 +55,7 @@ return [
             // 云片网
             'class' => 'daixianceng\smser\YunpianSmser',
             'apikey' => '9b11127a9701975c734b8aee81ee3526', // 请替换成您的apikey
-            'useFileTransport' => false
+            'fileMode' => false
         ]
     ],
 ];
